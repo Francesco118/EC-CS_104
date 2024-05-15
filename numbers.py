@@ -30,3 +30,5 @@ while keepPlaying == True:
     response = input("Would you like to enter another number (y/n)?: ").lower
     if  response !=  'y': #Ask the user if they want to enter another number
         keepPlaying = False
+
+print('Thank you for playing!')
