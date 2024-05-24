@@ -1,49 +1,56 @@
-#Welcome user to My Finance
-print("Welcome to My Finance!")
-
-#Show Menu
-#userChoice = 0
-#userChoice = input(print("Please select an option:"))
-
-#Functions
-
+#MyFinance 
 #Net Pay
 def netPay(hourlyWage, totalHours):
-        hourlyWage = input(print("What is your hourly wage? "))
-        totalHours = input(print("How many hours did you work? "))
-        print("Your salary is: ", netPay)
-        netPay = hourlyWage * totalHours
-        return netPay
+      #  hourlyWage = int(input("What is your hourly wage? "))
+     #   totalHours = int(input("How many hours did you work? "))
+        grossPay = hourlyWage * totalHours
+        federalTax = grossPay * 0.10
+        stateTax = grossPay * 0.05
+        socialSecurity = grossPay * 0.062
+        netPay = grossPay - (federalTax + stateTax + socialSecurity)
+        print("Net pay is: $", netPay)
 
 #Enter Revenue or Expense
-def revenueOrExpense(revenueOrExpense):
-        print('Enter transaction name: ')
-        print('Enter amount (use negative sign for expense): ')
-#Show discretionary income
-def discretionaryIncome(netPay, revenueOrExpense):
+def revenue_expense(revenueOrExpense):
+        while True:
+                transactionName = input('Enter transaction name: ')
+                transactionAmount = float(input("Enter amount (use negative sign for expense): "))
+                revenueOrExpense[transactionName] = transactionAmount
+                another = input("Another? y/n ")
+                if another != "y":
+                        break
 
-#Exit the program
-def exitApplication():
-    
+#Show discretionary income
+def discretionaryIncome(revenueOrExpense):
+        totalRevenue = sum(transactionAmount for transactionAmount in revenueOrExpense > 0)
+        totalExpenses = sum(transactionAmount for transactionAmount in revenueOrExpense < 0)
+        discretionaryIncome = totalRevenue - totalExpenses
+        print(f"Revenue: ${totalRevenue} Expense: ${totalExpenses} Discretionary: ${discretionaryIncome}\n")
 #The program itself
 def main():
-        while exit == False:
-                print("Please select an option:")
-                print('1-Calculate net pay')
+        print("Welcome to My Finance!\n")
+        revenueOrExpense = {}
+        while True:
+                print('\n1-Calculate net pay')
                 print('2-Enter revenue or expense')
                 print('3-Show discretionary income')
                 print('4-Exit the program')
-                userChoice = input(print("Please select an option:"))
+                userChoice = input("\nPlease select an option: ")
 
-                if userChoice == 1:
+                if userChoice == "1":
+                        hourlyWage = float(input("What is your hourly wage? "))
+                        totalHours = float(input("How many hours did you work? "))
                         netPay(hourlyWage, totalHours)
-                        print("Your salary is: ", netPay)
-                elif userChoice == 2:
-                        revenueOrExpense(revenueOrExpense)
-                elif userChoice == 3:
-                        discretionaryIncome(netPay, revenueOrExpense)
-                elif userChoice == 4:
+                elif userChoice == "2":
+                        revenue_expense(revenueOrExpense)
+                elif userChoice == "3":
+                        discretionaryIncome(revenueOrExpense)
+                elif userChoice == "4":
                         #exitApplication()
+                        exit = True
                         break
                 else:
                         print("Invalid option. Please try again.")
+
+if __name__ == "__main__":
+   main()
