@@ -8,7 +8,11 @@ def netPay(hourlyWage, totalHours):
         stateTax = grossPay * 0.05
         socialSecurity = grossPay * 0.062
         netPay = grossPay - (federalTax + stateTax + socialSecurity)
-        print("Net pay is: $", netPay)
+        print("Your gross pay is $" + str(grossPay))
+        print("Your federal tax is $" + str(federalTax))
+        print("Your state tax is $" + str(stateTax))
+        print("Your social security tax is $" + str(socialSecurity))
+        print("Your net pay is $" + str(netPay))
 
 #Enter Revenue or Expense
 def revenue_expense(revenueOrExpense):
@@ -22,9 +26,9 @@ def revenue_expense(revenueOrExpense):
 
 #Show discretionary income
 def discretionaryIncome(revenueOrExpense):
-        totalRevenue = sum(transactionAmount for transactionAmount in revenueOrExpense > 0)
-        totalExpenses = sum(transactionAmount for transactionAmount in revenueOrExpense < 0)
-        discretionaryIncome = totalRevenue - totalExpenses
+        totalRevenue = sum(transactionAmount for transactionAmount in revenueOrExpense.values() if transactionAmount > 0)
+        totalExpenses = sum(transactionAmount for transactionAmount in revenueOrExpense.values() if transactionAmount < 0)
+        discretionaryIncome = totalRevenue + totalExpenses
         print(f"Revenue: ${totalRevenue} Expense: ${totalExpenses} Discretionary: ${discretionaryIncome}\n")
 #The program itself
 def main():
@@ -54,3 +58,4 @@ def main():
 
 if __name__ == "__main__":
    main()
+   print("Thanks for using MyFinance!")
