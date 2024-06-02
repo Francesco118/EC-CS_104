@@ -18,13 +18,6 @@ def main():
     colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet", "black", "white", "gray"]
 
     while True:
-        sides = int(input("Enter the number of sides (1-99): "))
-        while sides < 1 or sides > 99:
-            print("Invalid input. Please enter a number between 1 and 99.")
-            sides = int(input("Enter the number of sides (1-99): "))
-
-        side_length = int(input("Enter the length of each side (in pixels): "))
-
         print("Choose a color:")
         for i, color in enumerate(colors):
             print(f"{i+1}. {color}")
@@ -34,6 +27,15 @@ def main():
         while choice < 1 or choice > 11:
             print("Invalid input. Please enter a number between 1 and 11.")
             choice = int(input("Enter your choice (1-11): "))
+            
+        sides = int(input("Enter the number of sides (1-99): "))
+        while sides < 1 or sides > 99:
+            print("Invalid input. Please enter a number between 1 and 99.")
+            sides = int(input("Enter the number of sides (1-99): "))
+
+        side_length = int(input("Enter the length of each side (in pixels): "))
+
+        
 
         if choice == 11:
             for _ in range(sides):
